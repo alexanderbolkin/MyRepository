@@ -1,4 +1,4 @@
-import AuthForm, { STATE_LOGIN } from 'components/AuthForm';
+import Loginview, { STATE_LOGIN } from 'components/LoginView';
 import React from 'react';
 import { Button, Modal, ModalBody } from 'reactstrap';
 
@@ -33,7 +33,7 @@ class AuthModal extends React.Component {
           fade={false}
           centered>
           <ModalBody>
-            <AuthForm
+            <LoginView
               authState={this.state.authState}
               onChangeAuthState={this.handleAuthState}
             />

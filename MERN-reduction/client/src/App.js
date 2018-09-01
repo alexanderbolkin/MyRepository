@@ -1,4 +1,4 @@
-import { STATE_LOGIN, STATE_SIGNUP } from 'components/AuthForm';
+import { STATE_LOGIN, STATE_SIGNUP } from 'components/LoginView';
 import GAListener from 'components/GAListener';
 import { EmptyLayout, LayoutRoute, MainLayout } from 'components/Layout';
 import AlertPage from 'pages/AlertPage';
@@ -10,13 +10,7 @@ import ButtonPage from 'pages/ButtonPage';
 import CardPage from 'pages/CardPage';
 import ChartPage from 'pages/ChartPage';
 // pages
-// pages
-// pages
-// pages
-// pages
-// pages
-// pages
-// pages
+import UserPage from './pages/UserPage';
 import DashboardPage from 'pages/DashboardPage';
 import DropdownPage from 'pages/DropdownPage';
 import FormPage from 'pages/FormPage';
@@ -30,12 +24,22 @@ import React from 'react';
 import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import './styles/reduction.css';
-
+import {connect} from 'react-redux';
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
 };
 
 class App extends React.Component {
+  // constructor(props) {
+  //   super(props);
+
+  //   // const { dispatch } = this.props;
+  //   // history.listen((location, action) => {
+  //   //   // clear alert on location change
+  //   //   dispatch(alertActions.clear());
+  //   // });
+  // }
+
   render() {
     return (
       <BrowserRouter basename={getBasename()}>
@@ -62,6 +66,12 @@ class App extends React.Component {
               path="/login-modal"
               layout={MainLayout}
               component={AuthModalPage}
+            />
+            <LayoutRoute
+              exact
+              path="/users"
+              layout={MainLayout}
+              component={UserPage}
             />
             <LayoutRoute
               exact
@@ -192,3 +202,13 @@ const query = ({ width }) => {
 };
 
 export default componentQueries(query)(App);
+
+function mapStateToProps(state) {
+  const { alert } = state;
+  return {
+    alert
+  };
+}
+
+const connectedApp = connect(mapStateToProps)(App);
+export { connectedApp as App };

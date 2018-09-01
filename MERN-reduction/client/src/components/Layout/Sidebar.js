@@ -81,6 +81,7 @@ const pageContents = [
 ];
 
 const navItems = [
+  { to: '/users', name: 'users', exact: true, Icon: MdViewList },
   { to: '/', name: 'dashboard', exact: true, Icon: MdDashboard },
   { to: '/cards', name: 'cards', exact: false, Icon: MdWeb },
   { to: '/charts', name: 'charts', exact: false, Icon: MdInsertChart },
@@ -121,7 +122,7 @@ class Sidebar extends React.Component {
                 alt=""
               />
               <span className="text-white">
-                Reduction <FaGithub />
+                School PPP <FaGithub />
               </span>
             </SourceLink>
           </Navbar>

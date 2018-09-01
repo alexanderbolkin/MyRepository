@@ -9,7 +9,7 @@ const Footer = () => {
     <Navbar>
       <Nav navbar>
         <NavItem>
-          2018 Reduction theme, source on <SourceLink>Github</SourceLink>
+          &copy; 2018 Reduction mern, source on <SourceLink>Github</SourceLink>
         </NavItem>
       </Nav>
     </Navbar>

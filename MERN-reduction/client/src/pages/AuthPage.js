@@ -1,7 +1,7 @@
-import AuthForm, { STATE_LOGIN } from 'components/AuthForm';
+import {LoginView, STATE_LOGIN } from '../components/LoginView';
 import React from 'react';
 import { Card, Col, Row } from 'reactstrap';
-
+// import {connect} from 'react-redux';
 class AuthPage extends React.Component {
   handleAuthState = authState => {
     if (authState === STATE_LOGIN) {
@@ -25,7 +25,7 @@ class AuthPage extends React.Component {
         }}>
         <Col md={6} lg={4}>
           <Card body>
-            <AuthForm
+            <LoginView
               authState={this.props.authState}
               onChangeAuthState={this.handleAuthState}
               onLogoClick={this.handleLogoClick}
@@ -37,4 +37,15 @@ class AuthPage extends React.Component {
   }
 }
 
+// export default AuthPage;
+// function mapStateToProps(state) {
+//   const { alert } = state;
+//   return {
+//     alert
+//   };
+// }
+
 export default AuthPage;
+
+// const connectedAuthPage = connect(mapStateToProps)(AuthPage);
+// export { connectedAuthPage as AuthPage };
