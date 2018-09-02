@@ -16,14 +16,18 @@ function login(username, password) {
     userService.login(username, password)
       .then(
         user => {
-      console.log('===here444===')
-      console.log(user)
+          console.log('===here444===')
+          console.log(user)
 
           dispatch(success(user));
-          history.push(`${process.env.PUBLIC_URL}/`);
+          alert('successfully login.')
+          if(userConstants.LOGIN_SUCCESS === 'USERS_LOGIN_SUCCESS'){  
+            window.location.replace("/");
+          }
         },
         error => {
           dispatch(failure(error));
+          alert('error');
           dispatch(alertActions.error(error));
         }
       );
@@ -39,17 +43,18 @@ function logout() {
   return { type: userConstants.LOGOUT };
 }
 
-function register(username, password) {
+function register(username, email, password) {
   return dispatch => {
     dispatch(request());
-    userService.register(username, password)
+    userService.register(username, email, password)
       .then(
         user => {
           dispatch(success(user));
-          history.push(`${process.env.PUBLIC_URL}/`);
+          alert('successfully register.');
         },
         error => {
           dispatch(failure(error));
+          alert('error');
           dispatch(alertActions.error(error));
         }
       );

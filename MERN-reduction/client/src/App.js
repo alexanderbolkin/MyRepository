@@ -9,6 +9,8 @@ import ButtonGroupPage from 'pages/ButtonGroupPage';
 import ButtonPage from 'pages/ButtonPage';
 import CardPage from 'pages/CardPage';
 import ChartPage from 'pages/ChartPage';
+import { alertActions } from './actions/alert.actions';
+import { history } from './helpers/history';
 // pages
 import UserPage from './pages/UserPage';
 import DashboardPage from 'pages/DashboardPage';
@@ -30,15 +32,15 @@ const getBasename = () => {
 };
 
 class App extends React.Component {
-  // constructor(props) {
-  //   super(props);
+  constructor(props) {
+    super(props);
 
-  //   // const { dispatch } = this.props;
-  //   // history.listen((location, action) => {
-  //   //   // clear alert on location change
-  //   //   dispatch(alertActions.clear());
-  //   // });
-  // }
+    // const { dispatch } = this.props;
+    // history.listen((location, action) => {
+    //   // clear alert on location change
+    //   dispatch(alertActions.clear());
+    // });
+  }
 
   render() {
     return (

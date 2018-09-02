@@ -9,7 +9,7 @@ exports.authenticate = async function(req, res, next) {
 
   try {
 
-    let user = await UserService.authenticate(req.body.username, req.body.password);
+    let user = await UserService.authenticate(req.body.email, req.body.password);
     console.log('====11=====')
     // Return the users list with the appropriate HTTP Status Code and Message.
 

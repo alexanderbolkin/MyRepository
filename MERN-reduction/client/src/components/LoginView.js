@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 import { userActions } from '../actions/user.actions';
 import LogoComponent from "../components/Logo";
 import { connect } from "react-redux";
-
+import {userConstants} from '../constants/user.constants';
 class LoginView extends Component {
   constructor(props) {
     super(props);
 
     // reset login status
-    // this.props.dispatch(userActions.logout());
+    this.props.dispatch(userActions.logout());
 
     this.state = {
       activeTab: 'login',
@@ -63,18 +63,21 @@ class LoginView extends Component {
 
   loginSubmit(e) {
     e.preventDefault();
-    
+    // this.props.authState === STATE_LOGIN;
     this.setState({ loginSubmitted: true });
     const { loginEmail, loginPassword } = this.state;
     const { dispatch } = this.props;
     if (loginEmail && loginPassword) {
       dispatch(userActions.login(loginEmail, loginPassword));
+      // if(userConstants.LOGIN_SUCCESS === 'USERS_LOGIN_SUCCESS'){  
+      //   window.location.replace("/");
+      // }
     }
   }
 
   registerSubmit(e) {
     e.preventDefault();
-
+    // this.props.authState === STATE_SIGNUP;
     this.setState({ registerSubmitted: true });
     const { registerusername, registerEmail, registerPassword } = this.state;
     const { dispatch } = this.props;

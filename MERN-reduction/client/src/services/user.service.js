@@ -7,11 +7,11 @@ export const userService = {
   getAll
 };
 
-function login(username, password) {
+function login(email, password) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password })
+    body: JSON.stringify({ email, password })
   };
   return fetch('http://127.0.0.1:3003/user/authenticate', requestOptions)
     .then(response => {
@@ -43,11 +43,11 @@ function logout() {
   localStorage.removeItem('auth_user');
 }
 
-function register(username, password) {
+function register(username, email, password) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password })
+    body: JSON.stringify({ username, email, password })
   };
 
   return fetch('http://127.0.0.1:3003/user/register', requestOptions)

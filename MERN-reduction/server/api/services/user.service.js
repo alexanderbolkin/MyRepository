@@ -3,15 +3,16 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user.model');
 
 // Async function to get the User List
-exports.authenticate = async function(username, password) {
+exports.authenticate = async function(email, password) {
   try {
-    let user = await User.findOne({ 'username': username });
+    let user = await User.findOne({ 'email': email });
     console.log('========auth======');
     console.log(user);
     // Return the authenticated user that was returned by the mongoose promise
 
     let result = await bcrypt.compare(password, user.password);
-
+    console.log('========result=======');
+    console.log(result);
     if ( result ) {
       return {
         _id: user._id,
