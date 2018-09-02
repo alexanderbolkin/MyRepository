@@ -9,8 +9,6 @@ import ButtonGroupPage from 'pages/ButtonGroupPage';
 import ButtonPage from 'pages/ButtonPage';
 import CardPage from 'pages/CardPage';
 import ChartPage from 'pages/ChartPage';
-import { alertActions } from './actions/alert.actions';
-import { history } from './helpers/history';
 // pages
 import UserPage from './pages/UserPage';
 import DashboardPage from 'pages/DashboardPage';
@@ -27,20 +25,15 @@ import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import './styles/reduction.css';
 import {connect} from 'react-redux';
+
+import AddSchoolPage from './pages/AddSchoolPage';
+import SaveSchoolPage from './pages/SaveSchoolPage';
+
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
 };
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // const { dispatch } = this.props;
-    // history.listen((location, action) => {
-    //   // clear alert on location change
-    //   dispatch(alertActions.clear());
-    // });
-  }
 
   render() {
     return (
@@ -74,6 +67,18 @@ class App extends React.Component {
               path="/users"
               layout={MainLayout}
               component={UserPage}
+            />
+            <LayoutRoute
+              exact
+              path="/add"
+              layout={MainLayout}
+              component={AddSchoolPage}
+            />
+            <LayoutRoute
+              exact
+              path="/save"
+              layout={MainLayout}
+              component={SaveSchoolPage}
             />
             <LayoutRoute
               exact

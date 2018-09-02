@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { userActions } from '../actions/user.actions';
 import LogoComponent from "../components/Logo";
 import { connect } from "react-redux";
-import {userConstants} from '../constants/user.constants';
+// import {userConstants} from '../constants/user.constants';
 class LoginView extends Component {
   constructor(props) {
     super(props);

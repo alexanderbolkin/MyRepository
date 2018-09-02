@@ -27,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // }).unless({ path: ['/images/', '/user/authenticate', '/user/register'] }));
 
 // Routes
+
+app.use('/school', require('./api/routes/school.route'));
 app.use('/user', require('./api/routes/user.route'));
 app.use('/stats', require('./api/routes/stats.route'));
 app.use('/messages', require('./api/routes/messages.route'));

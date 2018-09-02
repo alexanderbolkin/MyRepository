@@ -82,6 +82,8 @@ const pageContents = [
 
 const navItems = [
   { to: '/users', name: 'users', exact: true, Icon: MdViewList },
+  { to: '/add', name: 'add school', exact: true, Icon: MdBorderAll },
+  { to: '/save', name: 'save school', exact: true, Icon: MdBorderAll },
   { to: '/', name: 'dashboard', exact: true, Icon: MdDashboard },
   { to: '/cards', name: 'cards', exact: false, Icon: MdWeb },
   { to: '/charts', name: 'charts', exact: false, Icon: MdInsertChart },

@@ -119,6 +119,9 @@ const CardPage = () => {
               <CardBody className="d-flex flex-column justify-content-start align-items-start">
                 <CardTitle>Card title</CardTitle>
                 <CardText>card text</CardText>
+                <input type="text"
+                      name="school"
+                      placeholder="School name"/>
               </CardBody>
 
               <CardBody className="d-flex justify-content-between align-items-center">
