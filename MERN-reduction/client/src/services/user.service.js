@@ -1,4 +1,5 @@
 import { authHeader } from '../helpers/auth-header';
+// import { addListener } from 'cluster';
 
 export const userService = {
   login,
@@ -13,7 +14,7 @@ function login(email, password) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
   };
-  return fetch('http://127.0.0.1:3003/user/authenticate', requestOptions)
+  return fetch('http://127.0.0.1:4200/users/authenticate', requestOptions)
     .then(response => {
 
       if (!response.ok) {
@@ -49,8 +50,8 @@ function register(username, email, password) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, email, password })
   };
-
-  return fetch('http://127.0.0.1:3003/user/register', requestOptions)
+  // alert(username,email,password);
+  return fetch('http://127.0.0.1:4200/users/register', requestOptions)
     .then(response => {
       if (!response.ok) {
         return Promise.reject(response.statusText);

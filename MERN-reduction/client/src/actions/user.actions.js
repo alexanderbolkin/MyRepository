@@ -20,14 +20,12 @@ function login(username, password) {
           console.log(user)
 
           dispatch(success(user));
-          alert('successfully login.')
           if(userConstants.LOGIN_SUCCESS === 'USERS_LOGIN_SUCCESS'){  
             window.location.replace("/");
           }
         },
         error => {
           dispatch(failure(error));
-          alert('error');
           dispatch(alertActions.error(error));
         }
       );
@@ -50,11 +48,9 @@ function register(username, email, password) {
       .then(
         user => {
           dispatch(success(user));
-          alert('successfully register.');
         },
         error => {
           dispatch(failure(error));
-          alert('error');
           dispatch(alertActions.error(error));
         }
       );

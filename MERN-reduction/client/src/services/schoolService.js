@@ -3,7 +3,7 @@ import axios from 'axios';
 class SchoolService {
 
     sendSchoolName(data) {
-      axios.post('http://localhost:3003/api/schools', {
+      axios.post('http://localhost:4200/api/schools/add', {
       name: data
     })
     .then(res => function() {
@@ -16,7 +16,7 @@ class SchoolService {
     }
   
     updateData(data, id){
-      axios.post('http://localhost:3003/items/update/'+id, {
+      axios.post('http://localhost:4200/items/update/'+id, {
         item: data
       })
       .then(res => this.setState({ items: res.data }))
@@ -24,12 +24,12 @@ class SchoolService {
     }  
   
     deleteData(id){
-      axios.get('http://localhost:3003/items/delete/'+id)
+      axios.get('http://localhost:4200/items/delete/'+id)
       .then(console.log('Deleted')).catch(err => console.log(err))
     }
 
     sendSchoolData(data) {
-      axios.post('http://localhost:3003/api/schools/statistics', data)
+      axios.post('http://localhost:4200/api/schools/statistics', data)
       .then(res =>       
       this.setState({ schoolData: res.data , message: res.message})
       )

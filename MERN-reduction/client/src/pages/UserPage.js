@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import  WidgetComponent  from "../components/Widgett";
 import { authHeader } from "../helpers/auth-header";
-// import { Button, ButtonGroup } from 'reactstrap';
+import { Button, ButtonGroup } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+// import {UserListPage} from './UserListPage';
 
 class UserPage extends Component {
 
@@ -22,16 +22,16 @@ class UserPage extends Component {
   }
 
   loadUserData() {
-    fetch('http://127.0.0.1:3003/user/', this.requestOptions)
+    fetch('http://127.0.0.1:4200/users', this.requestOptions)
       .then(response => response.json())
       .then(response => {
-        let data = response.data.docs;
-        this.setState({ users: data }) 
+        console.log(response);
+        this.setState({ users : response });
       });
   }
 
   delete(id) {
-    fetch('http://127.0.0.1:3003/user/' + id, { method: 'delete' }, this.requestOptions)
+    fetch('http://127.0.0.1:4200/users/' + id, { method: 'delete' }, this.requestOptions)
       .then(response => {
         // this.props.history.push("/user");
         window.location.reload();
@@ -46,10 +46,10 @@ class UserPage extends Component {
         <td className="">{item.email}</td>
         <td>
            <div className="">
-           <Link to={`/edit/${item._id}`} className="btn btn-outline-primary">Edit</Link>&nbsp;
+           <Link to={`/users/${item._id}`} className="btn btn-outline-primary">Edit</Link>&nbsp;
             <span style={{width:50}}></span>
             <button onClick={this.delete.bind(this, item._id)} className="btn btn-outline-secondary button-margin">Delete</button>
-          </div>
+            </div>
         </td>
       </tr>
     });

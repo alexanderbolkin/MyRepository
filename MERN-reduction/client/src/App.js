@@ -28,6 +28,9 @@ import {connect} from 'react-redux';
 
 import AddSchoolPage from './pages/AddSchoolPage';
 import SaveSchoolPage from './pages/SaveSchoolPage';
+import StatisticsPage from './pages/StatisticsPage';
+import EditDataPage from './pages/EditDataPage';
+import UserListPage from './pages/UserListPage';
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
@@ -80,12 +83,30 @@ class App extends React.Component {
               layout={MainLayout}
               component={SaveSchoolPage}
             />
+             <LayoutRoute
+              exact
+              path="/school/:schoolid/edit/:id"
+              layout={MainLayout}
+              component={EditDataPage}
+            />
+            <LayoutRoute
+              exact
+              path="/statistics/:id"
+              layout={MainLayout}
+              component={StatisticsPage}
+            />
             <LayoutRoute
               exact
               path="/"
               layout={MainLayout}
               component={DashboardPage}
             />
+            <LayoutRoute
+              exact
+              path="/users/:id"
+              layout={MainLayout}
+              component={UserListPage}
+            />            
             <LayoutRoute
               exact
               path="/buttons"

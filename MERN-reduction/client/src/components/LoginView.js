@@ -69,9 +69,6 @@ class LoginView extends Component {
     const { dispatch } = this.props;
     if (loginEmail && loginPassword) {
       dispatch(userActions.login(loginEmail, loginPassword));
-      // if(userConstants.LOGIN_SUCCESS === 'USERS_LOGIN_SUCCESS'){  
-      //   window.location.replace("/");
-      // }
     }
   }
 

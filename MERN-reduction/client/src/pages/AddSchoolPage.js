@@ -1,84 +1,73 @@
 import React, { Component } from 'react';
-import WidgetComponent from "../components/Widgett";
-import { authHeader } from "../helpers/auth-header";
-import {ToastContainer, ToastStore} from 'react-toasts';
+import SchoolService from '../services/schoolService';
 
-class AddSchoolsPage extends Component {
+import {
+  Row,
+  Col,
+  Card,
+  CardHeader,
+  CardBody,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+} from 'reactstrap';
+
+import Page from 'components/Page';
+
+class AddSchoolPage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      school: [],
-      temp: {}
-    };
+    this.state = {name: ''};
+    this.addSchoolService = new SchoolService();
 
-    this.onAddSubmit = this.onAddSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.requestOptions = {
-      method: 'GET',
-      headers: authHeader()
-    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  componentWillMount() {
-    // this.loadUserData();
-  }
-
   
-
-  onChange = (e) => {
-    const state = Object.assign({}, this.state.temp)
-    state[e.target.name] = e.target.value;
-    this.setState({ temp: state });
+  handleChange(event) {
+    this.setState({name: event.target.value});
   }
 
-  onAddSubmit(e) {
-    e.preventDefault();
-    // const { schoolName, schoolData } = this.state.temp;
-    // const { dispatch } = this.props;
+  handleSubmit(event) {
+    event.preventDefault();
 
-    this.add(this.state.temp);
-
+    this.addSchoolService.sendSchoolName(this.state.name);
+    window.location.reload();
+    this.props.history.push('/add');
   }
-  add(temp) {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ temp })
-    };
-    return fetch('http://127.0.0.1:3003/api/schools/add', requestOptions)
-      .then(response => {
-        this.props.history.push("/");
-      })
-   
-  }
-
-  render() {
-
+  render() { 
     return (
-      <div className="content-wrapper container-fluid px-5 mb-4 trans-03-in-out">
-
-        <div className="row">
-        {/* <button onClick={() => }>Click me !</button> */}
-        <ToastContainer  position={ToastContainer.POSITION.TOP_CENTER} store={ToastStore}/>
-
-          <div className="col-lg-12 mb-3">
-            <WidgetComponent header='Add School' className='shadow-01' excerpt=''>
-              <form className="container" onSubmit={this.onAddSubmit}>
-                <div className="row">
-                  <div className="col-md-12 mb-3">
-                    <label htmlFor="validationCustom01">Add School</label>
-                    <input type="text" className="form-control" placeholder="Enter School Name" 
-                    onChange={this.onChange} value={this.state.school.schoolName} name="schoolName" required />
-                  </div>
-                </div>
-                <button className="btn btn-primary" type="submit">Save</button>
-              </form>
-            </WidgetComponent>
-          </div>
-        </div>
-      </div>
+      <Page title="Add school" breadcrumbs={[{ name: 'Add school  ', active: true }]}>
+        <Row>
+          <Col xl={12} lg={12} md={12}>
+            <Card>
+              <CardHeader>Add School Form</CardHeader>
+              <CardBody>
+                <Form inline onSubmit={this.handleSubmit}>
+                  <FormGroup>
+                    <Label for="exampleSchool">School</Label>
+                    <Input
+                      type="text"
+                      name="school"
+                      placeholder="School name"
+                      value={this.state.name}
+                      onChange={this.handleChange}
+                    />
+                  </FormGroup>
+                  <FormGroup check row>
+                       <Button type="submit">Add SchoolName</Button>
+                  </FormGroup>
+                </Form>
+              </CardBody>
+            </Card>
+          </Col>        
+        </Row>
+      </Page>
     );
   }
 }
-
-export default AddSchoolsPage;
+ 
+export default AddSchoolPage;
