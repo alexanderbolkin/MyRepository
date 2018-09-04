@@ -55,3 +55,12 @@ function _delete(req, res, next) {
         .then(() => res.json({}))
         .catch(err => next(err));
 }
+
+router.post('/upload', (res,req,next) => {
+    console.log('--------------------image upload----------------------')
+    userService.update(req.params.id,req.body)
+        .then(() => res.json({}))
+        .catch(err => next(err));
+})
+
+

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import {ToastContainer, ToastStore} from 'react-toasts';
+import { ToastStore} from 'react-toasts';
 
 import {
   Row,
@@ -10,11 +10,11 @@ import {
   CardBody,
   Button,
   Form,
-  FormGroup,
+  // FormGroup,
   Label,
   Input,
   // FormText,
-  FormFeedback,
+  // FormFeedback,
 } from 'reactstrap';
 import { ValidatingFormGroup } from 'reactstrap-validation';
 
@@ -262,7 +262,7 @@ class AddDataPage extends Component {
               </CardBody>
             </Card>
           </Col>
-          <ToastContainer  position={ToastContainer.POSITION.TOP_CENTER} store={ToastStore}/>
+          {/* <ToastContainer  position={ToastContainer.POSITION.TOP_CENTER} store={ToastStore}/> */}
         </Row>
       </Page>
     )

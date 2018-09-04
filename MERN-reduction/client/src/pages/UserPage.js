@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import  WidgetComponent  from "../components/Widgett";
 import { authHeader } from "../helpers/auth-header";
-import { Button, ButtonGroup } from 'reactstrap';
+// import { Button, ButtonGroup } from 'reactstrap';
 import { Link } from 'react-router-dom';
 // import {UserListPage} from './UserListPage';
+import defaultImage from '../assets/img/users/default.jpg'
 
 class UserPage extends Component {
 
@@ -42,6 +43,11 @@ class UserPage extends Component {
     const apis = this.state.users.map((item, i) => {
       return <tr key={item._id}>
         <td className="">{i + 1}</td>
+        <td>
+          <div className="d-inline-block mr-2">
+            <img src={ process.env.PUBLIC_URL + item.avatar } className="rounded-circle" height="45px" alt="" ></img>
+          </div>
+        </td>
         <td>{item.username}</td>
         <td className="">{item.email}</td>
         <td>
@@ -65,6 +71,7 @@ class UserPage extends Component {
                 <thead>
                   <tr>
                     <th>No</th>
+                    <th>Avatar</th>
                     <th>Username</th>
                     <th>Email</th>
                     <th>Actions</th>

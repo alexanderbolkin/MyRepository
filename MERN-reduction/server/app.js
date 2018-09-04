@@ -9,6 +9,7 @@ const cors = require('cors');
 const jwt = require('_helpers/jwt');
 const errorHandler = require('_helpers/error-handler');
 require('app_api/models/db');
+const fileUpload = require('express-fileupload');
 
 // const index = require('./app_server/routes/index');
 const apiRoutes = require('./app_api/routes/index');
@@ -33,12 +34,40 @@ app.use(cors());
 // app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static(path.join(__dirname, 'app_api')));
 
+app.use('/public', express.static(__dirname + '/public'));
 app.use('/api', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header("Access-Control-Allow-Credentials", true);
   next();
 });
 
+app.use(cookieParser());
+app.use(fileUpload());
+app.use('/upload', express.static(__dirname + '/upload'));
+app.post('/upload', (req, res, next) => {
+  console.log(req);
+  // var imageName = file.fieldname + '-' + datetimestamp + '.' +
+  //  file.originalname.split('.')[file.originalname.split('.').length -1];
+  console.log('=======')
+  var datetimestamp = Date.now(); 
+  console.log(datetimestamp + '-' + req.files.image.name);
+
+
+  let imageFile = req.files.image;
+  console.log(imageFile);
+  let filename = datetimestamp + '-' + req.files.image.name;
+  console.log(filename);
+  imageFile.mv(`${__dirname}/upload/${filename}`, function (err) {
+    if (err) {
+      return res.status(500).send(err);
+    }
+
+    res.json({ file: `upload/${filename}` });
+  });
+
+})
 // api routes
 app.use('/users', require('./users/users.controller'));
 

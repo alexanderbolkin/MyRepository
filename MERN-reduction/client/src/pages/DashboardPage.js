@@ -1,66 +1,66 @@
 import React from 'react';
 
-import { getColor } from 'utils/colors';
+// import { getColor } from 'utils/colors';
 
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-  CardGroup,
-  CardDeck,
-  Row,
-  Col,
-  ListGroup,
-  ListGroupItem,
-  Badge,
-  Button,
-} from 'reactstrap';
+// import {
+//   Card,
+//   CardBody,
+//   CardHeader,
+//   CardTitle,
+//   CardGroup,
+//   CardDeck,
+//   Row,
+//   Col,
+//   ListGroup,
+//   ListGroupItem,
+//   Badge,
+//   Button,
+// } from 'reactstrap';
 
-import {
-  MdInsertChart,
-  MdBubbleChart,
-  MdPieChart,
-  MdShowChart,
-  MdPersonPin,
-  MdRateReview,
-  MdThumbUp,
-  MdShare,
-} from 'react-icons/lib/md';
+// import {
+//   MdInsertChart,
+//   MdBubbleChart,
+//   MdPieChart,
+//   MdShowChart,
+//   MdPersonPin,
+//   MdRateReview,
+//   MdThumbUp,
+//   MdShare,
+// } from 'react-icons/lib/md';
 
-import InfiniteCalendar from 'react-infinite-calendar';
+// import InfiniteCalendar from 'react-infinite-calendar';
 
-import { Line, Bar } from 'react-chartjs-2';
+// import { Line, Bar } from 'react-chartjs-2';
 
-import {
-  supportTicketsData,
-  productsData,
-  userProgressTableData,
-  avatarsData,
-  todosData,
-  chartjs,
-} from 'demos/dashboardPage';
-import { getStackLineChart, stackLineChartOptions } from 'demos/chartjs';
+// import {
+//   supportTicketsData,
+//   productsData,
+//   userProgressTableData,
+//   avatarsData,
+//   todosData,
+//   chartjs,
+// } from 'demos/dashboardPage';
+// import { getStackLineChart, stackLineChartOptions } from 'demos/chartjs';
 
-import Page from 'components/Page';
+ import Page from 'components/Page';
 
-import SupportTicket from 'components/SupportTicket';
-import ProductMedia from 'components/ProductMedia';
-import UserProgressTable from 'components/UserProgressTable';
+// import SupportTicket from 'components/SupportTicket';
+// import ProductMedia from 'components/ProductMedia';
+// import UserProgressTable from 'components/UserProgressTable';
 
-import { AnnouncementCard, TodosCard } from 'components/Card';
+// import { AnnouncementCard, TodosCard } from 'components/Card';
 
-import { NumberWidget, IconWidget } from 'components/Widget';
+// import { NumberWidget, IconWidget } from 'components/Widget';
 
-import MapWithBubbles from 'components/MapWithBubbles';
-import HorizontalAvatarList from 'components/HorizontalAvatarList';
+// import MapWithBubbles from 'components/MapWithBubbles';
+// import HorizontalAvatarList from 'components/HorizontalAvatarList';
 
-const today = new Date();
-const lastWeek = new Date(
-  today.getFullYear(),
-  today.getMonth(),
-  today.getDate() - 7
-);
+// const today = new Date();
+// const lastWeek = new Date(
+//   today.getFullYear(),
+//   today.getMonth(),
+//   today.getDate() - 7
+// );
 
 class DashboardPage extends React.Component {
   componentDidMount() {
@@ -69,8 +69,8 @@ class DashboardPage extends React.Component {
   }
 
   render() {
-    const primaryColor = getColor('primary');
-    const secondaryColor = getColor('secondary');
+    // const primaryColor = getColor('primary');
+    // const secondaryColor = getColor('secondary');
 
     return (
       <Page>

@@ -44,11 +44,11 @@ function logout() {
   localStorage.removeItem('auth_user');
 }
 
-function register(username, email, password) {
+function register(username, email, password,avatar) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, email, password })
+    body: JSON.stringify({ username, email, password, avatar })
   };
   // alert(username,email,password);
   return fetch('http://127.0.0.1:4200/users/register', requestOptions)

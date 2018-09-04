@@ -6,6 +6,10 @@ import PropTypes from 'prop-types';
 import { userActions } from '../actions/user.actions';
 import LogoComponent from "../components/Logo";
 import { connect } from "react-redux";
+// import {
+//     Mdchat,
+//     MdCropSquare,
+// } from 'react-icons/lib/md';
 // import {userConstants} from '../constants/user.constants';
 class LoginView extends Component {
   constructor(props) {
@@ -13,7 +17,7 @@ class LoginView extends Component {
 
     // reset login status
     this.props.dispatch(userActions.logout());
-
+    
     this.state = {
       activeTab: 'login',
 
@@ -25,28 +29,20 @@ class LoginView extends Component {
       registerEmail: '',
       registerPassword: '',
       registerSubmitted: false,
+      avatar:'/default.jpg',
     };
 
-    // get isLogin() {
-    //   return this.props.authState === STATE_LOGIN;
-    // }
-  
-    // get isSignup() {
-    //   return this.props.authState === STATE_SIGNUP;
-    // }
-  
-    // changeAuthState = authState => event => {
-    //   event.preventDefault();
-  
-    //   this.props.onChangeAuthState(authState);
-    // };
+
 
     this.toggle = this.toggle.bind(this);
-
+    this.onChangeImage = this.onChangeImage.bind(this);
     this.formChange = this.formChange.bind(this);
     this.loginSubmit = this.loginSubmit.bind(this);
     this.registerSubmit = this.registerSubmit.bind(this);
+    // this.isLogin = this.isLogin.bind(this);
+    // this.isSignup = this.isSignup.bind(this);
   }
+
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -76,11 +72,35 @@ class LoginView extends Component {
     e.preventDefault();
     // this.props.authState === STATE_SIGNUP;
     this.setState({ registerSubmitted: true });
-    const { registerusername, registerEmail, registerPassword } = this.state;
+    const { registerusername, registerEmail, registerPassword,avatar } = this.state;
     const { dispatch } = this.props;
+    console.log(avatar);
     if (registerEmail && registerPassword) {
-      dispatch(userActions.register( registerusername, registerEmail, registerPassword));
+      dispatch(userActions.register( registerusername, registerEmail, registerPassword, this.state.avatar));
     }
+  }
+
+  onChangeImage = event => {
+    console.log(event.target.files[0]);
+    this.setState({ 
+      selectedFile:event.target.files[0]
+    });
+    // console.log(this.state.selectedFile);  
+    // console.log(this.fileInput);
+    const fd = new FormData();
+    fd.append('image', event.target.files[0], event.target.files[0].name );
+    console.log(fd);
+
+    fetch('http://localhost:4200/upload', {
+      method: 'POST',
+      body: fd,
+    }).then((response) => {
+      response.json().then((body) => {
+        this.setState({ avatar: `http://localhost:4200/${body.file}` });
+        console.log(this.state.avatar);
+        this.state.isSelected = true;
+      });
+    });
   }
 
   render() {
@@ -92,7 +112,20 @@ class LoginView extends Component {
         <div className="row">
           <div className="login-wrapper" style={{width:560}} >
             <LogoComponent/>
-
+            {this.state.activeTab === 'register' && (
+              <div className="form-group image-upload text-center" trigger="change" >
+                <label htmlFor="file-input">
+                  <img src={ process.env.PUBLIC_URL + this.state.avatar}
+                   className="rounded-circle"
+                    height="100px" width="100px" alt=""
+                     ></img>
+                </label>
+                <input style={{display:'none'}}
+                ref={fileInput => this.fileInput = fileInput}
+                type="file" id="file-input"  
+                  onChange={this.onChangeImage} alt=" " />
+              </div>
+            )}
             <div className="pt-4">
 
               <ul className="nav nav-tabs nav-fill" id="myTab" role="tablist">

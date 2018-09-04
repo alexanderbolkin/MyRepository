@@ -83,7 +83,8 @@ async function update(id, userParam) {
 
     // copy userParam properties to user
     Object.assign(user, userParam);
-
+    console.log('++++++++++++++++++++++');
+    console.log(user);
     await user.save();
 }
 

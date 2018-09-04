@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import {ToastContainer, ToastStore} from 'react-toasts';
 
 import {
@@ -10,11 +10,11 @@ import {
   CardBody,
   Button,
   Form,
-  FormGroup,
+  // FormGroup,
   Label,
   Input,
   // FormText,
-  FormFeedback,
+  // FormFeedback,
 } from 'reactstrap';
 import { ValidatingFormGroup } from 'reactstrap-validation';
 
@@ -156,6 +156,8 @@ class EditDataPage extends Component {
   }
 
   handleSubmit(event){
+
+    
     event.preventDefault();
     this.sendModifiedData(this.state.schoolData, this.schoolid, this.statisticid);
     this.props.history.push('/statistics/' + this.schoolid);
