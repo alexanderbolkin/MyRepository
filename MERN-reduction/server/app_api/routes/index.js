@@ -28,14 +28,6 @@ router
     .post(ctrlSchools.statisticsUpdateOne)
     .delete(ctrlSchools.statisticsDeleteOne);
 
-//users
 
-router.post('/users/authenticate', ctrlUsers.authenticate);
-router.post('/users/register', ctrlUsers.register);
-router.get('/users', ctrlUsers.getAll);
-router.get('/users/current', ctrlUsers.getCurrent);
-router.get('/users/:id', ctrlUsers.getById);
-router.put('/users/:id', ctrlUsers.update);
-router.delete('/users/:id', ctrlUsers._delete);
 
 module.exports = router;
